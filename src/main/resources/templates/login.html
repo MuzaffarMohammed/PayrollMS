@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+<title>Payroll Management System</title>
+<style>
+body {
+	background-image: url('/images/pms_login.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.container {
+	margin-left: 490px;
+	margin-top: 200px;
+}
+
+.row {
+	padding-left: 180px;
+	padding-top: 100px;
+}
+.support{
+	font-family: monospace;
+    font-size: 11px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h1 style="color: #82b0ca; font-weight: 600;">Welcome to Payroll
+			Management System</h1>
+		<div class="row">
+			<form th:object="${employee}" th:action="@{/authenticate}"
+				method="post">
+				<div>
+					<label style="color: white;">User Name: <input
+						style="margin-left: 4px; width: 500px; height: 50px;" type="text"
+						th:field="*{user}" /></label><br />
+					<p th:if="${#fields.hasErrors('user')}" th:errors="*{user}"></p>
+				</div>
+				<div>
+					<label style="color: white;">Password: <input
+						style="margin-left: 15px; width: 500px; height: 50px;"
+						type="password" th:field="*{pwd}" /></label><br />
+					<p th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></p>
+				</div>
+				<div style="padding-left: 90px;">
+					<button type="submit"
+						style="color: white; width: 200px; margin-left: 150px;">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- <div style="margin-top: 170px; margin-left: 10px; color: aliceblue; font-size: 10px;">
+			<label>Support:</label> 
+			<label class="support">Contact Person: Muzaffar Mohammed</label> 
+			<label class="support">Phone Number: +91 9951204368</label>
+			<label class="support">Email Address: muzaffarmohammed43@gmail.com</label>
+		</div>
+	<div style="margin-top: 20px; margin-left: 10px; height: fit-content; width: fit-content; color: aliceblue; font-size: 10px;">
+		<label>Copyright © 2020 MZ Software, Inc. ALL RIGHTS RESERVED.
+			This software is licensed as restricted rights software. The use,
+			reproduction, or disclosure of this software is subject to
+			restrictions set forth in your license agreement with MZ
+			Technologies.</label>
+	</div> -->
+</body>
+</html>

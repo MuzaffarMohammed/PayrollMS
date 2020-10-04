@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <style>
+      #map {
+        height: 700px; 
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body style="background: #2f87c5fa;">
+    <div
+			style="margin: 2px; background-color: #2f87c5fa; color: white; font-size: 36px; font-family: unset; width: 480px;">
+			<h3>My Travel</h3>
+		</div>
+    <div id="map"></div>
+    <form th:object="${employee}" th:action="@{/mytravel/save}" method="post">
+	     <input id="myTravelDataId" type="hidden" th:field="*{my_Travel}"/>
+	     <button type="submit" style="height: 31px; color: #2f87c5fa; cursor: pointer;" class="button-primary">Submit</button>
+    </form>
+    <a href="/pms"><button style="height: 31px; color: #2f87c5fa; cursor: pointer;" class="button-primary">Back</button></a>
+    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
+    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+   <script>
+         // Creating map options
+         var map = new L.map('map', {
+             center: [17.385044, 78.486671],
+             zoom: 2,
+             zoomControl: true
+          }); // Creating a map object
+         var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+         map.addLayer(layer);
+         
+		 var toSaveLatLngs = [];
+
+		 var myTravelData = "";
+		 var myTravelDataId = document.getElementById("myTravelDataId");
+		 if(myTravelDataId !== undefined){
+			 myTravelData = myTravelDataId.value;
+			 myTravelData = myTravelData.split("},{");
+		 }
+		 for(var i in myTravelData){
+			 try{
+			 var latLng = myTravelData[i].replace(/{/g, "").replace(/}/g, "").split(",");
+			 	 latLng = L.latLng(latLng[0], latLng[1]);
+			 	toSaveLatLngs.push(latLng);
+				 var marker = new L.Marker(latLng);
+				 	 marker.bindPopup("I travelled here!").openPopup();
+			 		 marker.addTo(map);
+			 }catch(e){
+				console.log(e); 
+			 }
+		 }  
+         
+		function onMapClick(e) {
+			toSaveLatLngs.push(e.latlng.toString());
+			 var marker = new L.Marker(e.latlng);
+			 marker.bindPopup("I travelled here!").openPopup();
+			 marker.addTo(map);
+			 console.log(toSaveLatLngs);
+			 var myTravelDataId = document.getElementById("myTravelDataId");
+			 console.log("toSaveLatLngs", toSaveLatLngs)
+			 if(myTravelDataId !== undefined){
+				 myTravelDataId.value = toSaveLatLngs;
+			}
+		}
+		
+		map.on('click', onMapClick);
+
+       
+      </script>
+ </body>
+</html>

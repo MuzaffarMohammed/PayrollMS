@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>PMS-Home</title>
+<style>
+body {
+	background-image: url('/images/pms_background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.icon{	
+	width: 150px;
+    height: 150px;
+    margin: 0px 10px 10px 0px;
+    display: inline-block;
+}
+.icon:hover {
+	background-color: #03a9f438;
+}
+</style>
+</head>
+<body>
+<div>
+<div style="margin-left: 1830px; margin-top: 20px;" class="icons">
+			<div style="padding-left: 3px;">
+				<a href="/logout"> <img alt="Log Out"
+					title="Log Out" th:src="@{/images/logout.png}"
+					width="50" height="50" />
+				</a>
+			</div>
+			<div>
+				<label style="color: white; font-family: 'Arial';">Log Out</label>
+			</div>
+</div>
+	</div>
+	<div style="margin-left: 1200px; margin-top: 350px;width:500px;">
+		<div class="icon">
+			<div style="padding-left: 30px;padding-top: 15px;">
+				<a href="/ems"> <img alt="Employee Details"
+					title="Employee Details" th:src="@{/images/emp_details.png}"
+					width="100" height="100" />
+				</a>
+			</div>
+			<div style="padding-left: 13px;">
+				<label style="color: white; font-family: 'Arial';">Employee
+					Details</label>
+			</div>
+		</div>
+		<div class="icon">
+			<div style="padding-left: 28px;padding-top: 16px;">
+				<a href="/lms"> <img alt="Leave Management"
+					title="Leave Management" th:src="@{/images/leaveMS_Icon.png}"
+					width="100" height="100" />
+				</a>
+			</div>
+			<div style="margin-left: 3px;">
+				<label style="color: white; font-family: 'Arial';">Leave
+					Management</label>
+			</div>
+		</div>
+		<div class="icon">
+			<div style="padding-left: 12px;padding-top: 16px;">
+				<a href="/docs/Form-12C.pdf" download="Form-12C"> <img alt="Form-12C"
+					title="Form-12C" th:src="@{/images/form.png}"
+					width="120" height="100" />
+				</a>
+			</div>
+			<div style="margin-left: 6px;">
+				<label style="color: white; font-family: 'Arial';padding-left: 30px;">Form-12C</label>
+			</div>
+		</div>
+		<div class="icon">
+			<div style="padding-left: 12px;padding-top: 16px;">
+				<a href="/docs/Form-12BA.pdf" download="Form-12BA"> <img alt="Form-12BA"
+					title="Form-12BA" th:src="@{/images/form.png}"
+					width="120" height="100" />
+				</a>
+			</div>
+			<div style="margin-left: 0px;">
+				<label style="color: white; font-family: 'Arial';padding-left: 30px;">Form-12BA</label>
+			</div>
+		</div>
+		<div class="icon">
+			<div style="padding-left: 12px;padding-top: 16px;">
+				<a href="/docs/Form-16.pdf" download="Form-16"> <img alt="Form-16"
+					title="Form-16" th:src="@{/images/form.png}"
+					width="120" height="100" />
+				</a>
+			</div>
+			<div style="margin-left: 11px;">
+				<label style="color: white; font-family: 'Arial';padding-left: 30px;">Form-16</label>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

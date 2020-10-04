@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+<title>Employees</title>
+<style type="text/css">
+.emp-container {
+	margin-left: 100px; 
+	width: 1300px;
+	background: aliceblue;
+	border: 5px Solid #8eb4d4;
+}
+td:first-child, th:first-child {
+    padding-left: 15px;
+    background-color: #33c3f0;
+}
+
+body {
+	background-image: url('/images/admin_background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.admin-title{
+	background: #33c3f0;
+    height: 59px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 10px;
+}
+</style>
+</head>
+<body>
+	<div>
+		<h3 class="admin-title">Admin Management</h3>
+		<div style="margin-left: 1850px; margin-top: 20px;" class="icons">
+			<div style="padding-left: 3px;">
+				<a href="/logout"> <img alt="Log Out"
+					title="Log Out" th:src="@{/images/logout.png}"
+					width="50" height="50" />
+				</a>
+			</div>
+			<div>
+				<label style="color: white; font-family: 'Arial';">Log Out</label>
+			</div>
+		</div>
+</div>
+	<div class="emp-container">
+		<div th:if="${not #lists.isEmpty(employees)}" style="padding: 50px;">
+			<h1 style="background-color:#33c3f0;color:white;font-size:30px;padding-left:10px;">Employees List</h1>
+			<table class="u-full-width">
+				<tr>
+					<th>Employee ID</th>
+					<th>Full Name</th>
+					<th>Designation</th>
+					<th>Email ID</th>
+					<th>Date of Joining</th>
+					<th>Grade</th>
+					<th>Allowance</th>
+					<th>Final Salary</th>
+					<th>View</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+				<tr th:each="employee : ${employees}">
+					<td th:text="${employee.pmsEmpPK.id}"><a
+						href="/employee/${employee.pmsEmpPK.id}">Employee Id</a></td>
+					<td th:text="${employee.pmsEmpPK.name}">Full Name</td>
+					<td th:text="${employee.designation}">Designation</td>
+					<td th:text="${employee.email_Id}">Email ID</td>
+					<td th:text="${employee.doj}">Date of Joining</td>
+					<td th:text="${employee.grade}">Grade</td>
+					<td th:text="${employee.allowance}">Grade</td>
+					<td th:text="${employee.finalSalary}">Grade</td>
+					<td><a th:href="${'/employee/' + employee.pmsEmpPK.id}">View</a></td>
+					<td><a th:href="${'/employee/edit/' + employee.pmsEmpPK.id}">Edit</a></td>
+					<td><a th:href="${'/employee/delete/' + employee.pmsEmpPK.id}">Delete</a></td>
+				</tr>
+			</table>
+			<a href="/employee/new"><button>Create
+					New Employee</button></a>
+		</div>
+	</div>
+</body>
+</html>

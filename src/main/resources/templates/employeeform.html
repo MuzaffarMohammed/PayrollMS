@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <title>Employee Form</title>
+    <style>
+    
+    .emp-form-row{
+	    border: 2px Solid lightgray;
+	    padding: 46px;
+	    width: fit-content;
+    }
+    </style>
+</head>
+<body style="background-color: ghostwhite;margin-top:100px;">
+<div class="emp-form-container" style="margin-left:750px;">
+<div style="margin-left:40px;">
+    <h1>Employee Form</h1>
+</div>
+    <div class="emp-form-row">
+        <form th:object="${employee}" th:action="@{/employee}" method="post">
+           <input type="hidden" th:field="*{pmsEmpPK.id}"/>
+            <div>
+                <label>Full Name:  <input type="text" th:field="*{pmsEmpPK.name}" style="margin-left:50px;" /></label><br/>
+                <p th:if="${#fields.hasErrors('pmsEmpPK.name')}" th:errors="*{pmsEmpPK.name}"></p>
+            </div>
+            <div>
+                <label>Designation:  <input type="text" th:field="*{designation}" style="margin-left:40px;"/></label><br/>
+                <p th:if="${#fields.hasErrors('designation')}" th:errors="*{designation}"></p>
+            </div>
+            <div>
+                <label>Email ID:  <input type="text" th:field="*{email_Id}" style="margin-left:65px;"/></label><br/>
+                <p th:if="${#fields.hasErrors('email_Id')}" th:errors="*{email_Id}"></p>
+            </div>
+            <div>
+                <label>Date Of Joining:  <input type="date" th:field="*{doj}" style="margin-left:15px;width: 190px;"/></label><br/>
+                <p th:if="${#fields.hasErrors('doj')}" th:errors="*{doj}"></p>
+            </div>
+             <div>
+                <label>Grade:  <input type="text" th:field="*{grade}" style="margin-left:79px;"/></label><br/>
+                <p th:if="${#fields.hasErrors('grade')}" th:errors="*{grade}"></p>
+            </div>
+            <div>
+                <label>Salary:<input style="margin-left: 79px" type="text" th:field="*{salary}"/></label><br/>
+                <p th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></p>
+            </div>
+            <div style="margin-left:80px;">
+              	<button type="submit">Submit</button>
+            	<a href="/"><button class="button-primary">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
