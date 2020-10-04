@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{ISO8601} [%t] %-5p %c - %m%n
+        </Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        
+        <RollingFile name="startupFileAppender" fileName="logs/server.log" filePattern="logs/server-%d{yyyy-MM-dd}-%i.log" append="true">
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </RollingFile>
+        
+        <RollingFile name="FileAppender" fileName="logs/pmsLog.log" filePattern="logs/pmsLog-%d{yyyy-MM-dd}-%i.log" append="true">
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy max="10"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        
+        <Logger name="org" level="info"></Logger>
+        <Logger name="javax" level="info"></Logger>
+        <Logger name="org.hibernate" level="info"></Logger>
+        <Logger name="org.hibernate.SQL" level="info"></Logger>
+        <Logger name="org.hibernate.type.descriptor.sql" level="info"></Logger>
+        
+        <Logger name="com.example.log4j2demo" level="debug" additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+        </Logger>
+        
+        <Logger name="com.pms" level="debug" additivity="false">
+            <AppenderRef ref="FileAppender" />
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="startupFileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>

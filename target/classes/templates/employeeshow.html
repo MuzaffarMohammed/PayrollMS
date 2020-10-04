@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Raleway:400,300,600" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <title>employee</title>
+    <style type="text/css">
+    body {
+	background-image: url('/images/ems_background.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+    </style>
+</head>
+<body style="background-color:azure;">
+<div class="container" style="width:500px;margin-top: 100px;">
+    <h1 style="padding: 5px;background-color:#33c3f0ab;color: white;font-size: 40px;font-family: unset;">Employee Details</h1>
+    <div class="row" style="background: #dbf1f5f2;padding: 40px">
+        <div>
+            <div>
+            <label>Employee ID:</label>
+                <p th:text="${employee.pmsEmpPK.id}"></p>
+            </div>
+            <label>Full Name:</label><p th:text="${employee.pmsEmpPK.name}"></p>
+            <label>Designation:</label><p th:text="${employee.designation}"></p>
+            <label>Date of Joining:</label><p th:text="${employee.doj}"></p>
+            <label>Grade:</label><p th:text="${employee.grade}"></p>
+            <label>Salary:</label><p th:text="${employee.salary}"></p>
+            <label>TDS Deducted:</label><p th:text="${employee.tds}"></p>
+            <label>Leaves Approved:</label><p th:text="${employee.leaves}"></p>
+        </div>
+
+    </div>
+        <a th:href="${employee.user==admin}?'/employees':'/pms'"><button style="margin-left:406px;margin-top: 2px;" class="button-primary">Back</button></a>
+</div>
+</body>
+</html>
